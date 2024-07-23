@@ -1,0 +1,220 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <http://example.com/base/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/.> .
+@prefix ssn: <http://www.w3.org/ns/ssn/.> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<#species>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "planthub_taxa_2024_03_11_full"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{accspeciesname}" ;
+        rr:class ex:Species ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasIdentifier ;
+        rr:objectMap [
+            rr:column "lcvpid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "ipniid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wfolink" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wikidata_q_ids" ;
+        ] ;
+        rr:objectMap [
+            rr:column "gbifid" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label ;
+        rr:objectMap [
+            rr:column "englishname" ;
+            rr:language "en" ;
+        ] ;
+        rr:objectMap [
+            rr:column "germanname" ;
+            rr:language "de" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasAuthor ;
+        rr:objectMap [
+            rr:column "accauthorname" ;
+        ] ;
+    ] ;
+
+    .
+
+
+<#LCVPID>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "planthub_taxa_2024_03_11_full"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{lcvpid}" ;
+        rr:class ex:LCVPID ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate skos:closeMatch ;
+        rr:objectMap [
+            rr:column "ipniid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wfolink" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wikidata_q_ids" ;
+        ] ;
+        rr:objectMap [
+            rr:column "gbifid" ;
+        ] ;
+    ] ;
+
+    .
+
+
+<#IPNIID>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "planthub_taxa_2024_03_11_full"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{ipniid}" ;
+        rr:class ex:IPNIID ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate skos:closeMatch ;
+        rr:objectMap [
+            rr:column "lcvpid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wfolink" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wikidata_q_ids" ;
+        ] ;
+        rr:objectMap [
+            rr:column "gbifid" ;
+        ] ;
+    ] ;
+
+    .
+
+
+<#WFOLINK>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "planthub_taxa_2024_03_11_full"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{wfolink}" ;
+        rr:class ex:WFOID ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate skos:closeMatch ;
+        rr:objectMap [
+            rr:column "lcvpid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "ipniid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wikidata_q_ids" ;
+        ] ;
+        rr:objectMap [
+            rr:column "gbifid" ;
+        ] ;
+    ] ;
+
+    .
+
+
+<#WIKIDATAID>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "planthub_taxa_2024_03_11_full"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{wikidata_q_ids}" ;
+        rr:class ex:WikidataID ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate skos:closeMatch ;
+        rr:objectMap [
+            rr:column "lcvpid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "ipniid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wfolink" ;
+        ] ;
+        rr:objectMap [
+            rr:column "gbifid" ;
+        ] ;
+    ] ;
+
+    .
+
+
+<#GBIFID>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "planthub_taxa_2024_03_11_full"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{gbifid}" ;
+        rr:class ex:GBIFID ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate skos:closeMatch ;
+        rr:objectMap [
+            rr:column "lcvpid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "ipniid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wfolink" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wikidata_q_ids" ;
+        ] ;
+    ] ;
+
+    .    
+
+
+<#Author>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "planthub_taxa_2024_03_11_full"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{accauthorname}" ;
+        rr:class ex:Author ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label ;
+        rr:objectMap [
+            rr:column "accauthorname" ;
+            rr:datatype xsd:string ;
+        ] ;
+    ] ;
+
+    .

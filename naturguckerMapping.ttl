@@ -1,0 +1,349 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <http://example.com/base/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/.> .
+@prefix ssn: <http://www.w3.org/ns/ssn/.> .
+
+<#taxonKey>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "naturguckersql_0to100k"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{taxonkey}" ;
+        rr:class ex:GBIFID ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasGenus ;
+        rr:objectMap [
+            rr:column "genus" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label ;
+        rr:objectMap [
+            rr:column "species" ;
+        ] ;
+        rr:objectMap [
+            rr:column "scientificname" ;
+        ] ;
+        rr:objectMap [
+            rr:column "verbatimscientificname" ;
+        ] ;
+        rr:objectMap [
+            rr:column "verbatimscientificnameauthorship" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasFamily ;
+        rr:objectMap [
+            rr:column "family" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasOrder ;
+        rr:objectMap [
+            rr:column "ordertax" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasClass ;
+        rr:objectMap [
+            rr:column "class" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasPhylum ;
+        rr:objectMap [
+            rr:column "phylum" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasKingdom ;
+        rr:objectMap [
+            rr:column "kingdom" ;
+        ] ;
+    ] ;
+
+    .
+
+<#kingdom>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "naturguckersql_0to100k"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{kingdom}" ;
+        rr:class ex:Kingdom ;
+    ] ;
+
+    .
+
+<#phylum>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "naturguckersql_0to100k"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{phylum}" ;
+        rr:class ex:Phylum ;
+    ] ;
+
+    .
+
+<#class>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "naturguckersql_0to100k"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{class}" ;
+        rr:class ex:Class ;
+    ] ;
+
+    .
+
+<#order>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "naturguckersql_0to100k"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{ordertax}" ;
+        rr:class ex:Order ;
+    ] ;
+
+    .
+
+<#family>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "naturguckersql_0to100k"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{family}" ;
+        rr:class ex:Family ;
+    ] ;
+
+    .
+
+<#genus>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "naturguckersql_0to100k"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{genus}" ;
+        rr:class ex:Genus ;
+    ] ;
+
+    .
+
+<#observation>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "naturguckersql_0to100k"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{gbifid}" ;
+        rr:class sosa:Observation ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate sosa:hasFeatureOfInterest ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{gbifid}_{species}" ;
+        ] ;
+    ] ; 
+
+    rr:predicateObjectMap [
+        rr:predicate sosa:usedProcedure ;
+        rr:objectMap [
+            rr:column "basisofrecord" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate sosa:madeBySensor ;
+        rr:objectMap [
+            rr:column "recordedby" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate sosa:observedProperty ;
+        rr:objectMap [
+            rr:template "http://example.com/base/Occurence" ;
+        ] ;
+    ] ; 
+
+    rr:predicateObjectMap [
+        rr:predicate sosa:hasResult ;
+        rr:objectMap [
+            rr:template "http://example.com/base/positive" ;
+        ] ;
+    ] ; 
+
+    rr:predicateObjectMap [
+        rr:predicate sosa:resultTime ;
+        rr:objectMap [
+            rr:column "eventdate" ;
+        ] ;
+    ] ;
+
+    .
+
+<#sensor>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "naturguckersql_0to100k"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{recordedby}" ;
+        rr:class sosa:Sensor ;
+    ] ;
+
+    .
+
+<#occurence>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "naturguckersql_0to100k"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/Occurence" ;
+        rr:class sosa:ObservableProperty ;
+    ] ;
+
+    .
+
+<#positive>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "naturguckersql_0to100k"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/positive" ;
+        rr:class sosa:Result ;
+    ] ;
+
+    .
+
+<#species>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "naturguckersql_0to100k"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{species}" ;
+        rr:class ex:Species ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasIdentifier ;
+        rr:objectMap [
+            rr:column "taxonkey" ;
+        ] ;
+    ] ;
+
+    .
+
+<#naturguckerDataset>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "naturguckersql_0to100k"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/naturgucker_dataset" ;
+        rr:class sosa:ObservationCollection ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate sosa:hasMember ;
+        rr:objectMap [
+            rr:column "gbifid" ;
+        ] ;
+    ] ;
+
+    .
+
+<#featureOfInterest>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "naturguckersql_0to100k"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{gbifid}_{species}" ;
+        rr:class sosa:FeatureOfInterest ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:instanceOf ;
+        rr:objectMap [
+            rr:column "species" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate sosa:hasProperty ;
+        rr:objectMap [
+            rr:template "http://example.com/base/Occurence" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate geo:lat ;
+        rr:objectMap [
+            rr:column "decimallatitude" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate geo:long ;
+        rr:objectMap [
+            rr:column "decimallongitude" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate geo:alt ;
+        rr:objectMap [
+            rr:column "elevation" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:coordinateUncertainty ;
+        rr:objectMap [
+            rr:column "coordinateuncertaintyinmeters" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:elevationAccuracy ;
+        rr:objectMap [
+            rr:column "elevationaccuracy" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:tryLocality ;
+        rr:objectMap [
+            rr:column "locality" ;
+        ] ;
+    ] ;
+
+    .
+
+
+
