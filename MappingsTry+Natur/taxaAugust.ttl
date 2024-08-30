@@ -1,0 +1,247 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <http://example.com/base/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/.> .
+@prefix ssn: <http://www.w3.org/ns/ssn/.> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<#species>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "ontop_taxa_august"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{accspeciesname}" ;
+        rr:class ex:Species ;
+        rr:termType rr:IRI;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasIdentifier ;
+        rr:objectMap [
+            rr:column "lcvpid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "ipniid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wfolink" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wikidataid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "gbifid" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label ;
+        rr:objectMap [
+            rr:column "englishname" ;
+            rr:language "en" ;
+        ] ;
+        rr:objectMap [
+            rr:column "germanname" ;
+            rr:language "de" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasAuthor ;
+        rr:objectMap [
+            rr:column "accauthorname" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasKingdom ;
+        rr:objectMap [
+            rr:column "kingdom" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasPhylum ;
+        rr:objectMap [
+            rr:column "phylum" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasOrder ;
+        rr:objectMap [
+            rr:column "ordertax" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasFamily ;
+        rr:objectMap [
+            rr:column "family" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasGenus ;
+        rr:objectMap [
+            rr:column "accgenus" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasStatus ;
+        rr:objectMap [
+            rr:column "status" ;
+        ] ;
+    ] ;
+
+    .
+
+
+<#lcvpid>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "ontop_taxa_august"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{lcvpid}" ;
+        rr:class ex:LCVPID ;
+        rr:termType rr:IRI;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate skos:closeMatch ;
+        rr:objectMap [
+            rr:column "ipniid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wfolink" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wikidataid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "gbifid" ;
+        ] ;
+    ] ;
+
+    .
+
+
+<#ipnidid>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "ontop_taxa_august"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{ipniid}" ;
+        rr:class ex:IPNIID ;
+        rr:termType rr:IRI;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate skos:closeMatch ;
+        rr:objectMap [
+            rr:column "lcvpid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wfolink" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wikidataid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "gbifid" ;
+        ] ;
+    ] ;
+
+    .
+
+
+<#wfoid>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "ontop_taxa_august"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{wfolink}" ;
+        rr:class ex:WFOID ;
+        rr:termType rr:IRI;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate skos:closeMatch ;
+        rr:objectMap [
+            rr:column "lcvpid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "ipniid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wikidataid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "gbifid" ;
+        ] ;
+    ] ;
+
+    .
+
+
+<#wikidataid>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "ontop_taxa_august"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{wikidataid}" ;
+        rr:class ex:WikidataID ;
+        rr:termType rr:IRI;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate skos:closeMatch ;
+        rr:objectMap [
+            rr:column "lcvpid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "ipniid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wfolink" ;
+        ] ;
+        rr:objectMap [
+            rr:column "gbifid" ;
+        ] ;
+    ] ;
+
+    .
+
+<#gbifid>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "ontop_taxa_august"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{gbifid}" ;
+        rr:class ex:GBIFID ;
+        rr:termType rr:IRI;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate skos:closeMatch ;
+        rr:objectMap [
+            rr:column "lcvpid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "ipniid" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wfolink" ;
+        ] ;
+        rr:objectMap [
+            rr:column "wikidataid" ;
+        ] ;
+    ] ;
+
+    . 
