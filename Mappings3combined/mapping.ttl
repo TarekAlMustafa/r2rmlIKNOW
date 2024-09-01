@@ -392,7 +392,7 @@
     rr:predicateObjectMap [
         rr:predicate sosa:observedProperty ;
         rr:objectMap [
-            rr:template "http://example.com/base/Occurence" ;
+            rr:template "http://example.com/base/Occurrence" ;
         ] ;
     ] ; 
 
@@ -425,13 +425,13 @@
 
     .
 
-<#occurence>
+<#occurrence>
     a rr:TriplesMap ;
 
     rr:logicalTable [ rr:tableName "ontop_natur_august"] ;
 
     rr:subjectMap [
-        rr:template "http://example.com/base/Occurence" ;
+        rr:template "http://example.com/base/Occurrence" ;
         rr:class sosa:ObservableProperty ;
         rr:termType rr:IRI;
     ] ;
@@ -494,7 +494,7 @@
     rr:predicateObjectMap [
         rr:predicate sosa:hasProperty ;
         rr:objectMap [
-            rr:template "http://example.com/base/Occurence" ;
+            rr:template "http://example.com/base/Occurrence" ;
         ] ;
     ] ;
 
