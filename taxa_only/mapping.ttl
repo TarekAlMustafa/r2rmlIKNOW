@@ -8,15 +8,23 @@
 @prefix ssn: <http://www.w3.org/ns/ssn/.> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<#species>
+<#gbifid>
     a rr:TriplesMap ;
 
     rr:logicalTable [ rr:tableName "ontop_taxa_august"] ;
 
     rr:subjectMap [
-        rr:template "http://example.com/base/{accspeciesname}" ;
-        rr:class ex:Species ;
+        rr:template "http://example.com/base/{gbifid}" ;
+        rr:class ex:GBIFID ;
         rr:termType rr:IRI;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasScientificName ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{accspeciesname}" ;
+            rr:termType rr:IRI;
+        ] ;
     ] ;
 
     rr:predicateObjectMap [
@@ -110,22 +118,12 @@
         ] ;
     ] ;
 
-    .
-
-
-<#lcvpid>
-    a rr:TriplesMap ;
-
-    rr:logicalTable [ rr:tableName "ontop_taxa_august"] ;
-
-    rr:subjectMap [
-        rr:template "http://example.com/base/{lcvpid}" ;
-        rr:class ex:LCVPID ;
-        rr:termType rr:IRI;
-    ] ;
-
     rr:predicateObjectMap [
         rr:predicate skos:closeMatch ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{lcvpid}" ;
+            rr:termType rr:IRI;
+        ] ;
         rr:objectMap [
             rr:template "http://example.com/base/{ipniid}" ;
             rr:termType rr:IRI;
@@ -137,12 +135,20 @@
         rr:objectMap [
             rr:template "http://example.com/base/{wikidataid}" ;
             rr:termType rr:IRI;
-            
         ] ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{gbifid}" ;
-            rr:termType rr:IRI;
-        ] ;
+    ] ;
+
+    .
+
+<#lcvpid>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "ontop_taxa_august"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{lcvpid}" ;
+        rr:class ex:LCVPID ;
+        rr:termType rr:IRI;
     ] ;
 
     .
@@ -158,28 +164,8 @@
         rr:class ex:IPNIID ;
         rr:termType rr:IRI;
     ] ;
-    rr:predicateObjectMap [
-        rr:predicate skos:closeMatch ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{lcvpid}" ;
-            rr:termType rr:IRI;
-        ] ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{wfolink}" ;
-            rr:termType rr:IRI;
-        ] ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{wikidataid}" ;
-            rr:termType rr:IRI;
-        ] ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{gbifid}" ;
-            rr:termType rr:IRI;
-        ] ;
-    ] ;
 
     .
-
 
 <#wfoid>
     a rr:TriplesMap ;
@@ -190,25 +176,6 @@
         rr:template "http://example.com/base/{wfolink}" ;
         rr:class ex:WFOID ;
         rr:termType rr:IRI;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate skos:closeMatch ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{lcvpid}" ;
-            rr:termType rr:IRI;
-        ] ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{ipniid}" ;
-            rr:termType rr:IRI;
-        ] ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{wikidataid}" ;
-            rr:termType rr:IRI;
-        ] ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{gbifid}" ;
-            rr:termType rr:IRI;
-        ] ;
     ] ;
 
     .
@@ -224,59 +191,8 @@
         rr:class ex:WikidataID ;
         rr:termType rr:IRI;
     ] ;
-    rr:predicateObjectMap [
-        rr:predicate skos:closeMatch ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{lcvpid}" ;
-            rr:termType rr:IRI;
-        ] ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{ipniid}" ;
-            rr:termType rr:IRI;
-        ] ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{wfolink}" ;
-            rr:termType rr:IRI;
-        ] ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{gbifid}" ;
-            rr:termType rr:IRI;
-        ] ;
-    ] ;
 
     .
-
-<#gbifid>
-    a rr:TriplesMap ;
-
-    rr:logicalTable [ rr:tableName "ontop_taxa_august"] ;
-
-    rr:subjectMap [
-        rr:template "http://example.com/base/{gbifid}" ;
-        rr:class ex:GBIFID ;
-        rr:termType rr:IRI;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate skos:closeMatch ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{lcvpid}" ;
-            rr:termType rr:IRI;
-        ] ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{ipniid}" ;
-            rr:termType rr:IRI;
-        ] ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{wfolink}" ;
-            rr:termType rr:IRI;
-        ] ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{wikidataid}" ;
-            rr:termType rr:IRI;
-        ] ;
-    ] ;
-
-    . 
 
 <#kingdom>
     a rr:TriplesMap ;
