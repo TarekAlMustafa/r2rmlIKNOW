@@ -7,6 +7,7 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/.> .
 @prefix ssn: <http://www.w3.org/ns/ssn/.> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
 <#gbifid>
     a rr:TriplesMap ;
@@ -23,7 +24,7 @@
         rr:predicate ex:hasScientificName ;
         rr:objectMap [
             rr:template "http://example.com/base/{accspeciesname}" ;
-            rr:termType rr:IRI;
+            rr:termType rr:Literal;
         ] ;
     ] ;
 
@@ -72,39 +73,7 @@
     ] ;
 
     rr:predicateObjectMap [
-        rr:predicate ex:hasKingdom ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{kingdom}" ;
-            rr:termType rr:IRI;
-        ] ;
-    ] ;
-
-    rr:predicateObjectMap [
-        rr:predicate ex:hasPhylum ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{phylum}" ;
-            rr:termType rr:IRI;
-        ] ;
-    ] ;
-
-    rr:predicateObjectMap [
-        rr:predicate ex:hasOrder ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{ordertax}" ;
-            rr:termType rr:IRI;
-        ] ;
-    ] ;
-
-    rr:predicateObjectMap [
-        rr:predicate ex:hasFamily ;
-        rr:objectMap [
-            rr:template "http://example.com/base/{family}" ;
-            rr:termType rr:IRI;
-        ] ;
-    ] ;
-
-    rr:predicateObjectMap [
-        rr:predicate ex:hasGenus ;
+        rr:predicate wdt:parentTaxon ;
         rr:objectMap [
             rr:template "http://example.com/base/{accgenus}" ;
             rr:termType rr:IRI;
@@ -218,6 +187,14 @@
         rr:termType rr:IRI;
     ] ;
 
+    rr:predicateObjectMap [
+        rr:predicate wdt:parentTaxon ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{kingdom}" ;
+            rr:termType rr:IRI;
+        ] ;
+    ] ;
+
     .
 
 <#order>
@@ -229,6 +206,14 @@
         rr:template "http://example.com/base/{ordertax}" ;
         rr:class ex:Order ;
         rr:termType rr:IRI;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate wdt:parentTaxon ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{phylum}" ;
+            rr:termType rr:IRI;
+        ] ;
     ] ;
 
     .
@@ -244,6 +229,14 @@
         rr:termType rr:IRI;
     ] ;
 
+    rr:predicateObjectMap [
+        rr:predicate wdt:parentTaxon ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{ordertax}" ;
+            rr:termType rr:IRI;
+        ] ;
+    ] ;
+
     .
 
 <#genus>
@@ -255,6 +248,14 @@
         rr:template "http://example.com/base/{accgenus}" ;
         rr:class ex:Genus ;
         rr:termType rr:IRI;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate wdt:parentTaxon ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{family}" ;
+            rr:termType rr:IRI;
+        ] ;
     ] ;
 
     .
