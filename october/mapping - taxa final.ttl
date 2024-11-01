@@ -1,0 +1,445 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <http://example.com/base/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/.> .
+@prefix ssn: <http://www.w3.org/ns/ssn/.> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<#gbifid>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "iknow_taxa_combined"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{gbifid}" ;
+        rr:class ex:GBIFID ;
+        rr:termType rr:IRI ;
+    ] ;
+
+    # Dynamically assign the class based on the 'rank' column using rdf:type
+    rr:predicateObjectMap [
+        rr:predicate rdf:type ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{rank}" ;
+            rr:termType rr:IRI ;
+        ] ;
+    ] ;
+
+#    rr:subjectMap [
+#        rr:template "http://example.com/base/{gbifid}" ;
+#        rr:class ex:GBIFID ;
+#        rr:termType rr:IRI;
+    
+#        rr:template "http://example.com/base/{gbifid}" ;
+#        rr:classMap [
+#            rr:template "http://example.com/base/{rank}" ;  # Dynamic class assignment from a column
+#            rr:termType rr:IRI ;
+#        ] ;
+#        rr:termType rr:IRI ;
+#    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasScientificName ;
+        rr:objectMap [
+            rr:template "{scientificname}" ;
+            rr:termType rr:Literal;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasCanonicalName ;
+        rr:objectMap [
+            rr:template "{canonicalname}" ;
+            rr:termType rr:Literal;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasImage ;
+        rr:objectMap [
+            rr:column "image" ;
+            rr:termType rr:Literal;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hasIdentifier ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{iucnid}" ;
+            rr:termType rr:IRI;
+        ] ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{ipniid}" ;
+            rr:termType rr:IRI;
+        ] ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{wfolink}" ;
+            rr:termType rr:IRI;
+        ] ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{wikidataid}" ;
+            rr:termType rr:IRI;
+        ] ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{gbifid}" ;
+            rr:termType rr:IRI;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label ;
+        rr:objectMap [
+            rr:column "englishname" ;
+            rr:language "en" ;
+        ] ;
+        rr:objectMap [
+            rr:column "germanname" ;
+            rr:language "de" ;
+        ] ;
+    ] ;
+
+#    rr:predicateObjectMap [
+#        rr:predicate ex:hasAuthor ;
+#        rr:objectMap [
+#            rr:template "http://example.com/base/{accauthorname}" ;
+#            rr:termType rr:IRI;
+#        ] ;
+#    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate wdt:parentTaxon ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{genuskey}" ;
+            rr:termType rr:IRI;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:isSynonym ;
+        rr:objectMap [
+            rr:column "synonym" ;
+            rr:termType rr:Literal;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate skos:closeMatch ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{iucnid}" ;
+            rr:termType rr:IRI;
+        ] ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{ipniid}" ;
+            rr:termType rr:IRI;
+        ] ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{wfolink}" ;
+            rr:termType rr:IRI;
+        ] ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{wikidataid}" ;
+            rr:termType rr:IRI;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:IUCN_Category ;
+        rr:objectMap [
+            rr:column "iucnredlistcategory" ;
+            rr:termType rr:Literal;
+        ] ;
+    ] ;
+
+    .
+
+<#iucnid>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "iknow_taxa_combined"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{iucnid}" ;
+        rr:class ex:IUCNID ;
+        rr:termType rr:IRI;
+    ] ;
+
+    .
+
+
+<#ipnidid>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "iknow_taxa_combined"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{ipniid}" ;
+        rr:class ex:IPNIID ;
+        rr:termType rr:IRI;
+    ] ;
+
+    .
+
+<#wfoid>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "iknow_taxa_combined"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{wfolink}" ;
+        rr:class ex:WFOID ;
+        rr:termType rr:IRI;
+    ] ;
+
+    .
+
+
+<#wikidataid>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "iknow_taxa_combined"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{wikidataid}" ;
+        rr:class ex:WikidataID ;
+        rr:termType rr:IRI;
+    ] ;
+
+    .
+
+<#kingdom>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "iknow_taxa_combined"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{kingdomkey}" ;
+        rr:class ex:KINGDOM ;
+        rr:termType rr:IRI ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label ;
+        rr:objectMap [
+            rr:column "kingdom" ;
+            rr:language "la" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate rdf:type ;
+        rr:objectMap [
+            rr:template "http://example.com/base/GBIFID" ;
+            rr:termType rr:IRI ;
+        ] ;
+    ] ;
+
+    .
+
+<#phylum>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "iknow_taxa_combined"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{phylumkey}" ;
+        rr:class ex:PHYLUM ;
+        rr:termType rr:IRI ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label ;
+        rr:objectMap [
+            rr:column "phylum" ;
+            rr:language "la" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate wdt:parentTaxon ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{kingdomkey}" ;
+            rr:termType rr:IRI;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate rdf:type ;
+        rr:objectMap [
+            rr:template "http://example.com/base/GBIFID" ;
+            rr:termType rr:IRI ;
+        ] ;
+    ] ;
+
+    .
+
+<#class>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "iknow_taxa_combined"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{classkey}" ;
+        rr:class ex:CLASS ;
+        rr:termType rr:IRI ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label ;
+        rr:objectMap [
+            rr:column "class" ;
+            rr:language "la" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate wdt:parentTaxon ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{phylumkey}" ;
+            rr:termType rr:IRI;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate rdf:type ;
+        rr:objectMap [
+            rr:template "http://example.com/base/GBIFID" ;
+            rr:termType rr:IRI ;
+        ] ;
+    ] ;
+
+    .    
+
+<#order>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "iknow_taxa_combined"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{orderkey}" ;
+        rr:class ex:ORDER ;
+        rr:termType rr:IRI ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label ;
+        rr:objectMap [
+            rr:column "ordertax" ;
+            rr:language "la" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate wdt:parentTaxon ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{classkey}" ;
+            rr:termType rr:IRI;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate rdf:type ;
+        rr:objectMap [
+            rr:template "http://example.com/base/GBIFID" ;
+            rr:termType rr:IRI ;
+        ] ;
+    ] ;
+
+    .
+
+<#family>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "iknow_taxa_combined"] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{familykey}" ;
+        rr:class ex:FAMILY ;
+        rr:termType rr:IRI ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label ;
+        rr:objectMap [
+            rr:column "family" ;
+            rr:language "la" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate wdt:parentTaxon ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{orderkey}" ;
+            rr:termType rr:IRI;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate rdf:type ;
+        rr:objectMap [
+            rr:template "http://example.com/base/GBIFID" ;
+            rr:termType rr:IRI ;
+        ] ;
+    ] ;
+
+    .
+
+<#genus>
+    a rr:TriplesMap ;
+
+    rr:logicalTable [ rr:tableName "iknow_taxa_combined"] ;
+
+#    rr:subjectMap [
+#        rr:template "http://example.com/base/{genus}" ;
+#        rr:class ex:GENUS ;
+#        rr:termType rr:IRI;
+#    ] ;
+
+    rr:subjectMap [
+        rr:template "http://example.com/base/{genuskey}" ;
+        rr:class ex:GENUS ;
+        rr:termType rr:IRI ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label ;
+        rr:objectMap [
+            rr:column "genus" ;
+            rr:language "la" ;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate wdt:parentTaxon ;
+        rr:objectMap [
+            rr:template "http://example.com/base/{familykey}" ;
+            rr:termType rr:IRI;
+        ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate rdf:type ;
+        rr:objectMap [
+            rr:template "http://example.com/base/GBIFID" ;
+            rr:termType rr:IRI ;
+        ] ;
+    ] ;
+
+    .
+
+#<#author>
+#    a rr:TriplesMap ;
+#
+#    rr:logicalTable [ rr:tableName "iknow_taxa_combined"] ;
+#
+#    rr:subjectMap [
+#        rr:template "http://example.com/base/{accauthorname}" ;
+#        rr:class ex:Author ;
+#        rr:termType rr:IRI;
+#    ] ;
+#
+#    .
